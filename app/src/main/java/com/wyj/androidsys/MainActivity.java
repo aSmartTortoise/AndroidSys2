@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_launch).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.e("MainActivity", "onClick");
                 Intent intent = new Intent(context, SecondActivity.class);
                 intent.putExtra("time", System.currentTimeMillis());
                 context.startActivity(intent);
