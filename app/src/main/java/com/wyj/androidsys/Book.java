@@ -12,15 +12,18 @@ import android.os.Parcelable;
 public class Book implements Parcelable {
     public int bookId;
     public String bookName;
+    public String author;
 
-    public Book(int bookId, String bookName) {
+    public Book(int bookId, String bookName, String author) {
         this.bookId = bookId;
         this.bookName = bookName;
+        this.author = author;
     }
 
     protected Book(Parcel in) {
         bookId = in.readInt();
         bookName = in.readString();
+        author = in.readString();
     }
 
     public static final Creator<Book> CREATOR = new Creator<Book>() {
@@ -44,5 +47,6 @@ public class Book implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(bookId);
         dest.writeString(bookName);
+        dest.writeString(author);
     }
 }
