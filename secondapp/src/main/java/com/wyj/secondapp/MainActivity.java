@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     String bookName = mIBookManager.getBookName();
                     Log.e("MainActivity", "bookName" + bookName);
-                    List<Book> books = mIBookManager.addBook(new Book(0, "基督山伯爵"));
+                    List<Book> books = mIBookManager.addBook(new Book(0, "基督山伯爵", "亚历山大.仲马"));
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
