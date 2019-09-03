@@ -10,6 +10,7 @@ import com.wyj.androidsys.IBookManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class BookService extends Service {
 
@@ -17,6 +18,8 @@ public class BookService extends Service {
     public BookService() {
 
     }
+
+    private CopyOnWriteArrayList<Book> mWriteArrayList = new CopyOnWriteArrayList<>();
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -38,8 +41,8 @@ public class BookService extends Service {
 
         @Override
         public List<Book> addBook(Book book) {
-            bookList.add(book);
-            return bookList;
+            mWriteArrayList.add(book);
+            return mWriteArrayList;
         }
     }
 }
