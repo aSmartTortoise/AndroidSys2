@@ -14,7 +14,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class BookService extends Service {
 
-    private List<Book> bookList;
     public BookService() {
 
     }
@@ -22,8 +21,14 @@ public class BookService extends Service {
     private CopyOnWriteArrayList<Book> mWriteArrayList = new CopyOnWriteArrayList<>();
 
     @Override
+    public void onCreate() {
+        super.onCreate();
+        mWriteArrayList.add(new Book(0, "基督山伯爵", "亚历山大.仲马"));
+        mWriteArrayList.add(new Book(1, "三个火枪手", "亚历山大.仲马"));
+    }
+
+    @Override
     public IBinder onBind(Intent intent) {
-        bookList = new ArrayList<>();
        return new BookBinder();
     }
 

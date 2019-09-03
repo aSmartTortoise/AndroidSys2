@@ -29,8 +29,6 @@ public class MainActivity extends AppCompatActivity {
             if (mIBookManager == null) return;
             mIBookManager.asBinder().unlinkToDeath(mDeathRecipient, 0);
             mIBookManager = null;
-            // TODO: 2019/8/30 0030
-
         }
     };
     private Context mContext;
@@ -65,9 +63,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    String bookName = mIBookManager.getBookName();
-                    Log.e("MainActivity", "bookName" + bookName);
-                    List<Book> books = mIBookManager.addBook(new Book(0, "基督山伯爵", "亚历山大.仲马"));
+                    List<Book> books = mIBookManager.addBook(new Book(2, "魔戒", "托尔金"));
+                    Log.e("MainActivity", books.toString());
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }

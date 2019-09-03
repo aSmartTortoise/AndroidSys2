@@ -8,6 +8,7 @@ package com.wyj.androidsys;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 public class Book implements Parcelable {
     public int bookId;
@@ -24,6 +25,12 @@ public class Book implements Parcelable {
         bookId = in.readInt();
         bookName = in.readString();
         author = in.readString();
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "[" + bookName + " - "+ author + "]";
     }
 
     public static final Creator<Book> CREATOR = new Creator<Book>() {

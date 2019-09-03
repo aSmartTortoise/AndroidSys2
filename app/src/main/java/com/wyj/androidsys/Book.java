@@ -8,6 +8,7 @@ package com.wyj.androidsys;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 public class Book implements Parcelable {
     public int bookId;
@@ -18,6 +19,12 @@ public class Book implements Parcelable {
         this.bookId = bookId;
         this.bookName = bookName;
         this.author = author;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "[" + bookName + " - "+ author + "]";
     }
 
     protected Book(Parcel in) {
