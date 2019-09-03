@@ -1,6 +1,7 @@
 // IBookManager.aidl
 package com.wyj.androidsys;
 import com.wyj.androidsys.Book;
+import com.wyj.androidsys.IOnNewBookArrivedListener;
 
 // Declare any non-default types here with import statements
 
@@ -12,11 +13,13 @@ interface IBookManager {
 //    void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat,
 //            double aDouble, String aString);
 
-    String getBookName();
+    List<Book> getBookList();
 
-    String getBookAuthor();
 
-    List<Book> addBook(in Book book);
+    void addBook(in Book book);
 
+    void registerListener(IOnNewBookArrivedListener listener);
+
+    void unRegisterListener(IOnNewBookArrivedListener listener);
 
 }

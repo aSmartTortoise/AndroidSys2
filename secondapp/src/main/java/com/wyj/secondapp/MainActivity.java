@@ -5,7 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Binder;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +17,7 @@ import android.view.View;
 
 import com.wyj.androidsys.IBookManager;
 import com.wyj.androidsys.Book;
+import com.wyj.androidsys.IOnNewBookArrivedListener;
 
 import java.util.List;
 
@@ -32,6 +35,28 @@ public class MainActivity extends AppCompatActivity {
         }
     };
     private Context mContext;
+
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            Log.e("MainActivity", msg.obj.toString());
+        }
+    };
+
+    private IOnNewBookArrivedListener mListener = new IOnNewBookArrivedListener() {
+        @Override
+        public void onNewBookArrived(Book book) throws RemoteException {
+            Message message = mHandler.obtainMessage();
+            message.obj = book;
+            mHandler.sendMessage(message);
+        }
+
+        @Override
+        public IBinder asBinder() {
+            return null;
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +76,11 @@ public class MainActivity extends AppCompatActivity {
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
+                try {
+                    mIBookManager.registerListener(mListener);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
@@ -63,8 +93,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    List<Book> books = mIBookManager.addBook(new Book(2, "魔戒", "托尔金"));
-                    Log.e("MainActivity", books.toString());
+                    mIBookManager.addBook(new Book(2, "魔戒", "托尔金"));
+                    List<Book> bookList = mIBookManager.getBookList();
+                    Log.e("MainActivity", bookList.toString());
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
@@ -81,8 +112,16 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        if (mIBookManager != null && mIBookManager.asBinder().isBinderAlive()) {
+            try {
+                mIBookManager.unRegisterListener(mListener);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }
+        if (mConnection != null) {
+            unbindService(mConnection);
+        }
         super.onDestroy();
-        if (mConnection != null)
-        unbindService(mConnection);
     }
 }
