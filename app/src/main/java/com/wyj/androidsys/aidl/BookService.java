@@ -3,6 +3,7 @@ package com.wyj.androidsys.aidl;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
+import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 import android.util.Log;
 
@@ -22,7 +23,7 @@ public class BookService extends Service {
     }
 
     private CopyOnWriteArrayList<Book> mWriteArrayList = new CopyOnWriteArrayList<>();
-    private CopyOnWriteArrayList<IOnNewBookArrivedListener> mArrivedListeners = new CopyOnWriteArrayList<>();
+    private RemoteCallbackList<IOnNewBookArrivedListener> mArrivedListeners = new RemoteCallbackList<>();
     private AtomicBoolean mIsServiceDestroyed = new AtomicBoolean(false);
 
     @Override
@@ -52,16 +53,16 @@ public class BookService extends Service {
 
         @Override
         public void registerListener(IOnNewBookArrivedListener listener) {
-            if (!mArrivedListeners.contains(listener))
-                mArrivedListeners.add(listener);
-            Log.e("BookService", "监听器的大小:" + mArrivedListeners.size());
+            mArrivedListeners.register(listener);
+            int count = mArrivedListeners.getRegisteredCallbackCount();
+            Log.e("BookService", "registerListener count:" + count);
         }
 
         @Override
         public void unRegisterListener(IOnNewBookArrivedListener listener) {
-            if (mArrivedListeners.contains(listener))
-                mArrivedListeners.remove(listener);
-            Log.e("BookService", "监听器的大小:" + mArrivedListeners.size());
+            mArrivedListeners.unregister(listener);
+            int count = mArrivedListeners.getRegisteredCallbackCount();
+            Log.e("BookService", "unRegisterListener count:" + count);
         }
     }
 
@@ -72,13 +73,11 @@ public class BookService extends Service {
             while (!mIsServiceDestroyed.get()) {
                 try {
                     Thread.sleep(5000);
-
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
                 int bookId = mWriteArrayList.size() + 1;
                 Book newBook = new Book(bookId, "new Book#" + bookId, "author#" + bookId);
-
                 try {
                     onNewBookArrived(newBook);
                 } catch (RemoteException e) {
@@ -90,9 +89,14 @@ public class BookService extends Service {
 
     private void onNewBookArrived(Book newBook) throws RemoteException {
         mWriteArrayList.add(newBook);
-        for (IOnNewBookArrivedListener listener: mArrivedListeners) {
-            listener.onNewBookArrived(newBook);
+        int n = mArrivedListeners.beginBroadcast();
+        for (int i = 0; i < n; i++) {
+            IOnNewBookArrivedListener broadcastItem = mArrivedListeners.getBroadcastItem(i);
+            if (null != broadcastItem) {
+                broadcastItem.onNewBookArrived(newBook);
+            }
         }
+        mArrivedListeners.finishBroadcast();
     }
 
     @Override

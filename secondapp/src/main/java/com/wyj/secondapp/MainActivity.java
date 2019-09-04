@@ -44,17 +44,14 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private IOnNewBookArrivedListener mListener = new IOnNewBookArrivedListener() {
+    private IOnNewBookArrivedListener mListener = new IOnNewBookArrivedListener.Stub() {
         @Override
         public void onNewBookArrived(Book book) throws RemoteException {
+            String threadName = Thread.currentThread().getName();
+            Log.e("MainActivity", "threadName:" + threadName);
             Message message = mHandler.obtainMessage();
             message.obj = book;
             mHandler.sendMessage(message);
-        }
-
-        @Override
-        public IBinder asBinder() {
-            return null;
         }
     };
 
