@@ -105,6 +105,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(mContext, MessengerActivity.class));
             }
         });
+
+        findViewById(R.id.tv_provider).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     @Override

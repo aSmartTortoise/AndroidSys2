@@ -38,6 +38,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <provider
+            android:permission="com.wyj.bookprovider"
+            android:authorities="com.wyj.androidsys.book.provider"
+            android:name=".provider.BookProvider"/>
     </application>
 
 </manifest>
