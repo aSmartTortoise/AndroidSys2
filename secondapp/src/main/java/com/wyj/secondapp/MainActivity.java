@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.tv_provider).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(mContext, BookProviderActivity.class));
             }
         });
     }

@@ -39,7 +39,7 @@
             </intent-filter>
         </activity>
         <provider
-            android:permission="com.wyj.bookprovider"
+            android:exported="true"
             android:authorities="com.wyj.androidsys.book.provider"
             android:name=".provider.BookProvider"/>
     </application>

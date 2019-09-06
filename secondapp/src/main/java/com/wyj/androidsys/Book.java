@@ -13,7 +13,10 @@ import android.support.annotation.NonNull;
 public class Book implements Parcelable {
     public int bookId;
     public String bookName;
-    public String author;
+    public String author = "";
+
+    public Book() {
+    }
 
     public Book(int bookId, String bookName, String author) {
         this.bookId = bookId;
@@ -30,7 +33,7 @@ public class Book implements Parcelable {
     @NonNull
     @Override
     public String toString() {
-        return "[" + bookName + " - "+ author + "]";
+        return "[ bookName:" + bookName + " - bookId: "+ bookId + "]";
     }
 
     public static final Creator<Book> CREATOR = new Creator<Book>() {
