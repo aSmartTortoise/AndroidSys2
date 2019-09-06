@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.wyj.androidsys">
-
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -11,9 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <service
-            android:name=".aidl.MessengerService"
+            android:name=".service.TCPServerService"
             android:enabled="true"
             android:exported="true"/>
+        <service
+            android:name=".aidl.MessengerService"
+            android:enabled="true"
+            android:exported="true" />
         <service
             android:name=".aidl.BookService"
             android:enabled="true"
@@ -38,10 +43,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <provider
-            android:exported="true"
+            android:name=".provider.BookProvider"
             android:authorities="com.wyj.androidsys.book.provider"
-            android:name=".provider.BookProvider"/>
+            android:exported="true" />
     </application>
 
 </manifest>

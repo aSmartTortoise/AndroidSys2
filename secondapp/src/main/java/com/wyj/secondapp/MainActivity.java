@@ -112,6 +112,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(mContext, BookProviderActivity.class));
             }
         });
+
+        findViewById(R.id.tv_socket).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(mContext, TCPClientActivity.class));
+            }
+        });
     }
 
     @Override
