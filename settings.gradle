@@ -1,1 +1,1 @@
-include ':app', ':secondapp'
+include ':app', ':secondapp', ':okhttpanalyse'
