@@ -8,22 +8,32 @@ import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.wyj.androidsys.activity.NotchActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     private LinearLayout mLl;
+    private Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final Context context = this;
+        mContext = this;
         findViewById(R.id.btn_launch).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.e("MainActivity", "onClick");
-                Intent intent = new Intent(context, SecondActivity.class);
+                Intent intent = new Intent(mContext, SecondActivity.class);
                 intent.putExtra("time", System.currentTimeMillis());
-                context.startActivity(intent);
+                mContext.startActivity(intent);
+            }
+        });
+
+        findViewById(R.id.btn_notch).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mContext.startActivity(new Intent(mContext, NotchActivity.class));
             }
         });
     }
