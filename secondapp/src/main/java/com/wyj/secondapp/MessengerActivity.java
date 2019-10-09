@@ -35,7 +35,6 @@ public class MessengerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messenger);
-
         Intent intent = new Intent();
         intent.setComponent(new ComponentName("com.wyj.androidsys", "com.wyj.androidsys.aidl.MessengerService"));
         mConnection = new ServiceConnection() {

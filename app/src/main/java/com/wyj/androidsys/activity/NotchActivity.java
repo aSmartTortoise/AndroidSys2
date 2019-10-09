@@ -5,7 +5,6 @@ import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.DisplayCutout;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -34,16 +33,16 @@ public class NotchActivity extends AppCompatActivity {
             mIv.post(new Runnable() {
                 @Override
                 public void run() {
-                    DisplayCutout displayCutout = mIv.getRootWindowInsets().getDisplayCutout();
-                    if (displayCutout == null) return;
-                    int safeInsetTop = displayCutout.getSafeInsetTop();
-                    int safeInsetLeft = displayCutout.getSafeInsetLeft();
-                    int safeInsetRight = displayCutout.getSafeInsetRight();
-                    int safeInsetBottom = displayCutout.getSafeInsetBottom();
-                    Log.e("NotchActivity", "left:" + safeInsetLeft + " top:" + safeInsetTop + " right:" + safeInsetRight + " bottom:" + safeInsetBottom);
-                    LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) mIv.getLayoutParams();
-                    params.topMargin = safeInsetTop;
-                    mIv.setLayoutParams(params);
+//                    DisplayCutout displayCutout = mIv.getRootWindowInsets().getDisplayCutout();
+//                    if (displayCutout == null) return;
+//                    int safeInsetTop = displayCutout.getSafeInsetTop();
+//                    int safeInsetLeft = displayCutout.getSafeInsetLeft();
+//                    int safeInsetRight = displayCutout.getSafeInsetRight();
+//                    int safeInsetBottom = displayCutout.getSafeInsetBottom();
+//                    Log.e("NotchActivity", "left:" + safeInsetLeft + " top:" + safeInsetTop + " right:" + safeInsetRight + " bottom:" + safeInsetBottom);
+//                    LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) mIv.getLayoutParams();
+//                    params.topMargin = safeInsetTop;
+//                    mIv.setLayoutParams(params);
                 }
             });
         }

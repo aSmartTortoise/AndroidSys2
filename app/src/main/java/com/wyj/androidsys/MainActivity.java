@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.wyj.androidsys.activity.NotchActivity;
+import com.wyj.androidsys.aidl.MessengerService;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,6 +37,10 @@ public class MainActivity extends AppCompatActivity {
                 mContext.startActivity(new Intent(mContext, NotchActivity.class));
             }
         });
+
+        startService(new Intent(mContext, MessengerService.class));
+
+
     }
 
     @Override
