@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:gravity="center_horizontal"
-    tools:context=".GradientDrawableActivity">
+    tools:context=".activity.GradientDrawableActivity">
 
 
     <TextView

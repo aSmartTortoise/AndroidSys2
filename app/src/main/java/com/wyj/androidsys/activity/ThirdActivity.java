@@ -23,5 +23,7 @@ public class ThirdActivity extends AppCompatActivity {
             }
         });
         RecyclerView recyclerView;
+
+        
     }
 }
