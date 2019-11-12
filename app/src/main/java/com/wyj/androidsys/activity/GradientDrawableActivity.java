@@ -1,7 +1,9 @@
-package com.wyj.androidsys;
+package com.wyj.androidsys.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.wyj.androidsys.R;
 
 public class GradientDrawableActivity extends AppCompatActivity {
 

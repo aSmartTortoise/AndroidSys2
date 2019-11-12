@@ -10,6 +10,8 @@ import android.view.View;
 
 import com.wyj.androidsys.Book;
 
+import java.net.URI;
+
 public class BookProviderActivity extends AppCompatActivity {
 
     @Override
@@ -37,5 +39,8 @@ public class BookProviderActivity extends AppCompatActivity {
 
             }
         });
+
+        getContentResolver().registerContentObserver(bookUri, false, null);
     }
+
 }

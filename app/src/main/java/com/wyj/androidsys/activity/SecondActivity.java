@@ -1,10 +1,12 @@
-package com.wyj.androidsys;
+package com.wyj.androidsys.activity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import com.wyj.androidsys.R;
 
 public class SecondActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.wyj.androidsys;
+package com.wyj.androidsys.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,7 +7,10 @@ import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.wyj.androidsys.R;
+
 public class ThirdActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +27,6 @@ public class ThirdActivity extends AppCompatActivity {
         });
         RecyclerView recyclerView;
 
-        
+
     }
 }

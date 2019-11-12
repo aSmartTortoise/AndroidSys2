@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.NotchActivity"></activity>
+        <activity android:name=".activity.NotchActivity" />
 
         <service
             android:name=".service.TCPServerService"
@@ -28,18 +28,18 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".GradientDrawableActivity" />
+        <activity android:name=".activity.GradientDrawableActivity" />
         <activity
-            android:name=".ThirdActivity"
+            android:name=".activity.ThirdActivity"
             android:launchMode="singleTask"
             android:process="com.wyj.androidsys.remote"
             android:taskAffinity="com.wyj.task1" />
         <activity
-            android:name=".SecondActivity"
+            android:name=".activity.SecondActivity"
             android:launchMode="singleTask"
             android:process=":remote"
             android:taskAffinity="com.wyj.task1" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -52,6 +52,9 @@
             android:name=".provider.BookProvider"
             android:authorities="com.wyj.androidsys.book.provider"
             android:exported="true" />
+
+        <activity android:name=".activity.HandlerTestActivity" />
+        <activity android:name=".activity.AsynctaskTestActivity"></activity>
     </application>
 
 </manifest>
