@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
                 .url(url)
                 .build();
         try {
-//            Response response = client.newCall(request).execute();
+            Response response = client.newCall(request).execute();
             client.newCall(request).enqueue(new Callback() {
                 @Override
                 public void onFailure(Call call, IOException e) {
