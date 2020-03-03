@@ -1,1 +1,1 @@
-include ':app', ':secondapp', ':okhttpanalyse'
+include ':app', ':secondapp', ':okhttpanalyse', ':androidxstudy'
