@@ -11,6 +11,11 @@ import android.os.Bundle;
 import java.util.prefs.PreferenceChangeEvent;
 import java.util.prefs.PreferenceChangeListener;
 
+/**
+ * 学习参考链接
+ * https://www.jianshu.com/p/4a922fa49f43
+ * https://github.com/madlymad/PreferenceApp
+ */
 public class MainActivity extends AppCompatActivity
         implements PreferenceFragmentCompat.OnPreferenceStartScreenCallback {
 
